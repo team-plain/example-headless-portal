@@ -65,10 +65,5 @@ export default async function ThreadPage({
     .catch((err) => {
       console.log(err);
     });
-  return (
-    <div>
-      {params.threadId}
-      {JSON.stringify({ data })}
-    </div>
-  );
+  return <div>{JSON.stringify(data, null, 2)}</div>;
 }

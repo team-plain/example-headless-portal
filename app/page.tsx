@@ -35,7 +35,7 @@ export default async function Home({
         {threads.data?.threads.map((thread) => {
           return (
             <div key={`thread-row-${thread.id}`}>
-              {thread.title} {thread.id}
+              <a href={`/thread/${thread.id}`}>{thread.title}</a>
             </div>
           );
         })}
