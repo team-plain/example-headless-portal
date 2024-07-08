@@ -21,6 +21,7 @@ export default async function Home({
 }) {
   const threads = await client.getThreads({
     filters: {
+      // customerIds: ["c_01J28ZQKJX9CVRXVHBMAXNSV5G"],
       tenantIdentifiers: [{ tenantId: "te_01J299SM3E25EJHT7JKYS6G7K5" }],
     },
   });
