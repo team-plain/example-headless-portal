@@ -1,8 +1,14 @@
 .main {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 32px;
   align-items: center;
-  padding: 6rem;
+  padding: 2rem;
   min-height: 100vh;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }

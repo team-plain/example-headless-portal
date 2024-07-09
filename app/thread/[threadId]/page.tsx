@@ -115,9 +115,6 @@ export default async function ThreadPage({
 		},
 	})
 		.then((res) => res.json())
-		.catch((err) => {
-			console.log(err);
-		});
 
 	const thread = data.data.thread;
 	const timelineEntries = thread.timelineEntries;
