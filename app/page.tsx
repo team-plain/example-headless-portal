@@ -1,3 +1,4 @@
+import Navigation from "@/components/navigation";
 import styles from "./page.module.css";
 import { PlainClient } from "@team-plain/typescript-sdk";
 
@@ -29,17 +30,19 @@ export default async function Home({
 	console.log(threads.data?.threads.length);
 
 	return (
-		<main className={styles.main}>
-			<h1>Plain Headless Portal</h1>
-			<div>
-				{threads.data?.threads.map((thread) => {
-					return (
-						<div key={`thread-row-${thread.id}`}>
-							<a href={`/thread/${thread.id}`}>{thread.title}</a>
-						</div>
-					);
-				})}
-			</div>
-		</main>
+		<>
+			<Navigation title="Plain Headless Portal example" />
+			<main className={styles.main}>
+				<div>
+					{threads.data?.threads.map((thread) => {
+						return (
+							<div key={`thread-row-${thread.id}`}>
+								<a href={`/thread/${thread.id}`}>{thread.title}</a>
+							</div>
+						);
+					})}
+				</div>
+			</main>
+		</>
 	);
 }
