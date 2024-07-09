@@ -6,3 +6,9 @@
   padding: 6rem;
   min-height: 100vh;
 }
+
+.message {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+}
