@@ -1,48 +1,48 @@
 import Navigation from "@/components/navigation";
 import styles from "./page.module.css";
-import { PlainClient } from "@team-plain/typescript-sdk";
+import { plainClient } from "@/utils/plainClient";
+import { ThreadRow } from "@/components/threadRow";
+import { PaginationControls } from "@/components/paginationControls";
 
 export const fetchCache = "force-no-store";
 
-const apiKey = process.env.PLAIN_API_KEY;
-if (!apiKey) {
-	throw new Error("Please set the `PLAIN_API_KEY` environment variable");
-}
-
-export const client = new PlainClient({
-	apiKey,
-});
+// When adapting this example get the tenant id as part of auth or fetch it afterwards
+const TENANT_EXTERNAL_ID = "abcd1234";
 
 export default async function Home({
-	params,
-	searchParams,
+  searchParams,
 }: {
-	params: { slug: string };
-	searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string | undefined };
 }) {
-	const threads = await client.getThreads({
-		filters: {
-			// customerIds: ["c_01J28ZQKJX9CVRXVHBMAXNSV5G"],
-			tenantIdentifiers: [{ tenantId: "te_01J299SM3E25EJHT7JKYS6G7K5" }],
-		},
-	});
+  const threads = await plainClient.getThreads({
+    filters: {
+      // If you want to only allow customers to view threads they have raised then you can filter by customerIds instead.
+      // Note that if you provide multiple filters they are combined with AND rather than OR.
+      //   customerIds: ["c_01J28ZQKJX9CVRXVHBMAXNSV5G"],
+      tenantIdentifiers: [{ externalId: TENANT_EXTERNAL_ID }],
+    },
+    after: searchParams.after as string | undefined,
+    before: searchParams.before as string | undefined,
+  });
 
-	console.log(threads.data?.threads.length);
-
-	return (
-		<>
-			<Navigation title="Plain Headless Portal example" />
-			<main className={styles.main}>
-				<div>
-					{threads.data?.threads.map((thread) => {
-						return (
-							<div key={`thread-row-${thread.id}`}>
-								<a href={`/thread/${thread.id}`}>{thread.title}</a>
-							</div>
-						);
-					})}
-				</div>
-			</main>
-		</>
-	);
+  return (
+    <>
+      <Navigation title="Plain Headless Portal example" />
+      <main className={styles.main}>
+        <h2>Support requests</h2>
+        {threads.data && (
+          <>
+            <div className={styles.list}>
+              {threads.data?.threads.map((thread) => {
+                return (
+                  <ThreadRow thread={thread} key={`thread-row-${thread.id}`} />
+                );
+              })}
+            </div>
+            <PaginationControls pageInfo={threads.data.pageInfo} />
+          </>
+        )}
+      </main>
+    </>
+  );
 }
