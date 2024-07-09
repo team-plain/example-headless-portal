@@ -1,18 +1,6 @@
 import styles from "./navigation.module.css";
-import { PlainClient } from "@team-plain/typescript-sdk";
 
-export const fetchCache = "force-no-store";
-
-const apiKey = process.env.PLAIN_API_KEY;
-if (!apiKey) {
-	throw new Error("Please set the `PLAIN_API_KEY` environment variable");
-}
-
-const client = new PlainClient({
-	apiKey,
-});
-
-export default async function Navigation({
+export default function Navigation({
 	hasBackButton = false,
 	title,
 }: {
