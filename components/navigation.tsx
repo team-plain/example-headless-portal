@@ -25,7 +25,7 @@ export default async function Navigation({
 			style={{ justifyContent: hasBackButton ? "flex-start" : "center" }}
 		>
 			{hasBackButton && <a href="/"> &lt; Go back</a>}
-			<h1>Plain Headless Portal Example</h1>
+			<h1>{title}</h1>
 		</nav>
 	);
 }
