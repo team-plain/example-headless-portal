@@ -8,7 +8,6 @@ export function PaginationControls({
 }: {
   pageInfo: PageInfoPartsFragment;
 }) {
-  console.log({ pageInfo });
   const router = useRouter();
   const pathname = usePathname();
   return (
