@@ -12,7 +12,7 @@ export default function Navigation({
 			className={styles.nav}
 			style={{ justifyContent: hasBackButton ? "flex-start" : "center" }}
 		>
-			{hasBackButton && <a href="/"> &lt; Go back</a>}
+			{hasBackButton && <a href="/">&lt; Go back</a>}
 			<h1>{title}</h1>
 		</nav>
 	);

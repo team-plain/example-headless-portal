@@ -2,6 +2,7 @@ import Navigation from "@/components/navigation";
 import styles from "./page.module.css";
 import Actor from "@/components/actor";
 import { ActorPartsFragment } from "@team-plain/typescript-sdk";
+import Avatar from "@/components/avatar";
 
 function getFullname(actor) {
 	switch (actor.__typename) {
@@ -33,6 +34,33 @@ export default async function ThreadPage({
 			query: `{ 
         thread(threadId: "th_01J299WQGA3VNQ4FDECV7JK6MC") {
             title
+            description
+            priority
+            status
+            createdAt {
+              iso8601
+            }
+            createdBy {
+              __typename
+              ... on UserActor {
+                  user {
+                      fullName
+                  }
+              }
+              ... on CustomerActor {
+                  customer {
+                      fullName
+                  }
+              }
+              ... on MachineUserActor {
+                  machineUser {
+                      fullName
+                  }
+              }
+            }
+            updatedAt {
+              iso8601
+            }
             timelineEntries {
                 edges {
                     node {
@@ -69,6 +97,10 @@ export default async function ThreadPage({
                                     }
                                 }
                             }
+                            ... on ChatEntry {
+                                chatId
+                                text
+                            }
                         }
                     }
                 }
@@ -89,25 +121,46 @@ export default async function ThreadPage({
 
 	const thread = data.data.thread;
 	const timelineEntries = thread.timelineEntries;
-	console.log(thread);
-
 	return (
 		<>
 			<Navigation hasBackButton title={thread.title} />
 			<main className={styles.main}>
 				<div className={styles.timeline}>
-					<div className={styles.message}>
-						{timelineEntries.edges.map((e) => {
-							const entry = e.node;
-							console.log("ENTRY", entry.actor);
+					{timelineEntries.edges.reverse().map((e) => {
+						const entry = e.node;
+						if (
+							entry.entry.__typename !== "CustomEntry" &&
+							entry.entry.__typename !== "EmailEntry" &&
+							entry.entry.__typename !== "SlackReplyEntry" &&
+							entry.entry.__typename !== "SlackMessageEntry" &&
+							entry.entry.__typename !== "ChatEntry"
+						) {
+							return null;
+						}
 
-							return (
-								<div key={entry.id}>
-									<Actor fullName={getFullname(entry.actor)} />
-									{entry.entry.components.map((component, idx) => {
+						return (
+							<div className={styles.message} key={entry.id}>
+								<div className={styles.entryHeader}>
+									<div className={styles.avatar}>
+										{getFullname(entry.actor)[0].toUpperCase()}
+									</div>
+									<div>
+										<div className={styles.actor}>
+											{getFullname(entry.actor)}
+										</div>
+										<div className={styles.timestamp}>
+											{entry.timestamp.iso8601}
+										</div>
+									</div>
+								</div>
+								{entry.entry.__typename === "CustomEntry" &&
+									entry.entry.components.map((component, idx) => {
 										if (component.__typename === "ComponentText") {
 											return (
-												<div key={`comp_${component.text}`}>
+												<div
+													key={`comp_${component.text}`}
+													className={styles.component}
+												>
 													{component.text}
 												</div>
 											);
@@ -115,13 +168,20 @@ export default async function ThreadPage({
 
 										return <div key={`comp_${idx}`}>TODO</div>;
 									})}
-								</div>
-							);
-						})}
-					</div>
+								{entry.entry.__typename === "ChatEntry" && (
+									<div>{entry.entry.text}</div>
+								)}
+							</div>
+						);
+					})}
 				</div>
 
-				<div className={styles.threadinfo}>jkdsfjkfsd</div>
+				<div className={styles.threadInfo}>
+					<div className={styles.threadInfoProp}>Created by:</div>
+					<div>{getFullname(thread.createdBy)}</div>
+					<div className={styles.threadInfoProp}>Created at:</div>
+					<div>{thread.createdAt.iso8601}</div>
+				</div>
 			</main>
 		</>
 	);
