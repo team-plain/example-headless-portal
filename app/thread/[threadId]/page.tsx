@@ -1,5 +1,21 @@
 import Navigation from "@/components/navigation";
 import styles from "./page.module.css";
+import Actor from "@/components/actor";
+import { ActorPartsFragment } from "@team-plain/typescript-sdk";
+
+function getFullname(actor) {
+	switch (actor.__typename) {
+		case "CustomerActor": {
+			return actor.customer.fullName;
+		}
+		case "UserActor": {
+			return actor.user.fullName;
+		}
+		case "MachineUserActor": {
+			return actor.user.fullName;
+		}
+	}
+}
 
 export default async function ThreadPage({
 	params,
@@ -79,25 +95,33 @@ export default async function ThreadPage({
 		<>
 			<Navigation hasBackButton title={thread.title} />
 			<main className={styles.main}>
-				<div className={styles.message}>
-					{timelineEntries.edges.map((entry) => {
-						console.log("ENTRY", entry);
+				<div className={styles.timeline}>
+					<div className={styles.message}>
+						{timelineEntries.edges.map((e) => {
+							const entry = e.node;
+							console.log("ENTRY", entry.actor);
 
-						return (
-							<div key={entry.node.id}>
-								{entry.node.entry.components.map((component, idx) => {
-									if (component.__typename === "ComponentText") {
-										return (
-											<div key={`comp_${component.text}`}>{component.text}</div>
-										);
-									}
+							return (
+								<div key={entry.id}>
+									<Actor fullName={getFullname(entry.actor)} />
+									{entry.entry.components.map((component, idx) => {
+										if (component.__typename === "ComponentText") {
+											return (
+												<div key={`comp_${component.text}`}>
+													{component.text}
+												</div>
+											);
+										}
 
-									return <div key={`comp_${idx}`}>TODO</div>;
-								})}
-							</div>
-						);
-					})}
+										return <div key={`comp_${idx}`}>TODO</div>;
+									})}
+								</div>
+							);
+						})}
+					</div>
 				</div>
+
+				<div className={styles.threadinfo}>jkdsfjkfsd</div>
 			</main>
 		</>
 	);

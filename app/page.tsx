@@ -9,7 +9,7 @@ if (!apiKey) {
 	throw new Error("Please set the `PLAIN_API_KEY` environment variable");
 }
 
-const client = new PlainClient({
+export const client = new PlainClient({
 	apiKey,
 });
 
