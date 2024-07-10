@@ -1,7 +1,18 @@
 .nav {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   padding: 16px;
   border-bottom: 1px solid #eee;
+}
+
+.backButton {
+  position: absolute;
+  left: 16px
+}
+
+.newRequest {
+  position: absolute;
+  right: 16px;
 }

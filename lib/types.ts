@@ -37,6 +37,10 @@ export type CustomEntry = {
 	components: [CustomTimelineEntryComponent];
 };
 
+export type Customer = {
+	fullName: string;
+}
+
 export type ChatEntry = {
 	__typename: "ChatEntry";
 	chatId: string;
@@ -78,7 +82,7 @@ export type ThreadTimeline = {
 	priority: number;
 	status: ThreadStatus;
 	createdAt: DateTimePartsFragment;
-	createdBy: Actor;
+	customer: Customer;
 	updatedAt: DateTimePartsFragment;
 	timelineEntries: {
 		edges: TimelineEntries;
