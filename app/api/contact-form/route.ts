@@ -3,16 +3,16 @@ import { plainClient } from "@/lib/plainClient";
 import { inspect } from "util";
 
 export type RequestBody = {
-    title: string;
-    message: string;
-}
+  title: string;
+  message: string;
+};
 
 // When implementing this for real, take these values from user auth (e.g validate auth token and take values from claims)
 const name = "Bob Smith";
 const email = "bob.smith@example.com";
 
 export async function POST(request: Request) {
-    // In production validation of the request body might be necessary.
+  // In production validation of the request body might be necessary.
   const body = await request.json();
 
   const upsertCustomerRes = await plainClient.upsertCustomer({
@@ -25,16 +25,20 @@ export async function POST(request: Request) {
         email: email,
         isVerified: true,
       },
-      tenantIdentifiers: [{externalId: TENANT_EXTERNAL_ID}]
+      tenantIdentifiers: [{ externalId: TENANT_EXTERNAL_ID }],
     },
     onUpdate: {},
   });
 
   if (upsertCustomerRes.error) {
     console.error(
-      inspect(upsertCustomerRes.error, { showHidden: false, depth: null, colors: true })
+      inspect(upsertCustomerRes.error, {
+        showHidden: false,
+        depth: null,
+        colors: true,
+      })
     );
-    return new Response(upsertCustomerRes.error.message, {status: 500});
+    return new Response(upsertCustomerRes.error.message, { status: 500 });
   }
 
   console.log(`Customer upserted ${upsertCustomerRes.data.customer.id}`);
@@ -44,7 +48,7 @@ export async function POST(request: Request) {
       customerId: upsertCustomerRes.data.customer.id,
     },
     title: body.title,
-    tenantIdentifier: {externalId: TENANT_EXTERNAL_ID},
+    tenantIdentifier: { externalId: TENANT_EXTERNAL_ID },
     components: [
       {
         componentText: {
@@ -55,13 +59,16 @@ export async function POST(request: Request) {
   });
 
   if (createThreadRes.error) {
-    console.error(inspect(createThreadRes.error, { showHidden: false, depth: null, colors: true }));
-    return new Response(createThreadRes.error.message, {status: 500});
+    console.error(
+      inspect(createThreadRes.error, {
+        showHidden: false,
+        depth: null,
+        colors: true,
+      })
+    );
+    return new Response(createThreadRes.error.message, { status: 500 });
   }
 
   console.log(`Thread created ${createThreadRes.data.id}.`);
-
-
-   
-    return new Response('', {status: 200})
-  }
+  return new Response("", { status: 200 });
+}

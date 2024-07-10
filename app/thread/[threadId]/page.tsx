@@ -4,7 +4,6 @@ import { getActorFullName } from "@/lib/getActorFullName";
 import { getFormattedDate } from "@/lib/getFormattedDate";
 import { getPriority } from "@/lib/getPriority";
 import { fetchThreadTimelineEntries } from "@/lib/fetchThreadTimelineEntries";
-import { plainClient } from "@/lib/plainClient";
 
 export default async function ThreadPage({
   params,
@@ -30,7 +29,7 @@ export default async function ThreadPage({
       <Navigation hasBackButton title={thread.title} />
       <main className={styles.main}>
         <div className={styles.timeline}>
-          {timelineEntries.edges.reverse().map((e) => {
+          {timelineEntries.edges.reverse().map((e, idx) => {
             const entry = e.node;
             if (
               entry.entry.__typename !== "CustomEntry" &&
@@ -41,17 +40,19 @@ export default async function ThreadPage({
             ) {
               return null;
             }
+            const actorName =
+              entry.actor.__typename === "MachineUserActor" && idx === 0
+                ? thread.customer.fullName
+                : getActorFullName(entry.actor);
 
             return (
               <div className={styles.message} key={entry.id}>
                 <div className={styles.entryHeader}>
                   <div className={styles.avatar}>
-                    {getActorFullName(entry.actor)[0].toUpperCase()}
+                    {actorName[0].toUpperCase()}
                   </div>
                   <div>
-                    <div className={styles.actor}>
-                      {getActorFullName(entry.actor)}
-                    </div>
+                    <div className={styles.actor}>{actorName}</div>
                     <div className={styles.timestamp}>
                       {getFormattedDate(entry.timestamp.iso8601)}
                     </div>
