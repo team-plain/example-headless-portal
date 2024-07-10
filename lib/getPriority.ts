@@ -1,4 +1,4 @@
-export function getPriority(priority: 0 | 1 | 2 | 3) {
+export function getPriority(priority: number) {
 	switch (priority) {
 		case 0: {
 			return "Urgent";
@@ -11,6 +11,9 @@ export function getPriority(priority: 0 | 1 | 2 | 3) {
 		}
 		case 3: {
 			return "Low";
+		}
+		default: {
+			return "Normal";
 		}
 	}
 }

@@ -1,98 +1,28 @@
 import Navigation from "@/components/navigation";
 import styles from "./page.module.css";
-import { getActorFullName } from "@/utils/getActorFullName";
-import { getFormattedDate } from "@/utils/getFormattedDate";
-import { getPriority } from "@/utils/getPriority";
+import { getActorFullName } from "@/lib/getActorFullName";
+import { getFormattedDate } from "@/lib/getFormattedDate";
+import { getPriority } from "@/lib/getPriority";
+import { fetchThreadTimelineEntries } from "@/lib/fetchThreadTimelineEntries";
+import { plainClient } from "@/lib/plainClient";
 
-export default async function ThreadPage() {
-	const data = await fetch("https://core-api.uk.plain.com/graphql/v1", {
-		method: "POST",
-		body: JSON.stringify({
-			query: `{ 
-        thread(threadId: "th_01J299WQGA3VNQ4FDECV7JK6MC") {
-            title
-            description
-            priority
-            status
-            createdAt {
-              iso8601
-            }
-            createdBy {
-              __typename
-              ... on UserActor {
-                  user {
-                      fullName
-                  }
-              }
-              ... on CustomerActor {
-                  customer {
-                      fullName
-                  }
-              }
-              ... on MachineUserActor {
-                  machineUser {
-                      fullName
-                  }
-              }
-            }
-            updatedAt {
-              iso8601
-            }
-            timelineEntries {
-                edges {
-                    node {
-                        id
-                        timestamp {
-                            iso8601
-                        }
-                        actor {
-                            __typename
-                            ... on UserActor {
-                                user {
-                                    fullName
-                                }
-                            }
-                            ... on CustomerActor {
-                                customer {
-                                    fullName
-                                }
-                            }
-                            ... on MachineUserActor {
-                                machineUser {
-                                    fullName
-                                }
-                            }
-                        }
-                        entry {
-                            __typename
-                            ... on CustomEntry {
-                                title
-                                components {
-                                    __typename
-                                    ... on ComponentText {
-                                      text
-                                    }
-                                }
-                            }
-                            ... on ChatEntry {
-                                chatId
-                                text
-                            }
-                        }
-                    }
-                }
-            }
-        }   
-      }`,
-		}),
-		headers: {
-			"Content-Type": "application/json",
-			"Plain-Workspace-Id": "w_01J28VHKDK5PV3DJSZAA01XGAN",
-			Authorization: `Bearer ${process.env.PLAIN_API_KEY}`,
-		},
-	}).then((res) => res.json());
+export default async function ThreadPage({
+	params,
+}: {
+	params: { threadId: string };
+}) {
+	const threadId = params.threadId;
 
-	const thread = data.data.thread;
+	const { data } = await fetchThreadTimelineEntries({
+		threadId,
+		first: 100,
+	});
+
+	if (!data) {
+		return null;
+	}
+
+	const thread = data.thread;
 	const timelineEntries = thread.timelineEntries;
 
 	return (
@@ -140,7 +70,7 @@ export default async function ThreadPage() {
 											);
 										}
 
-										return <div key={`comp_${idx}`}>TODO</div>;
+										return null;
 									})}
 								{entry.entry.__typename === "ChatEntry" && (
 									<div>{entry.entry.text}</div>
