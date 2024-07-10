@@ -8,12 +8,16 @@ export default function Navigation({
   title: string;
 }) {
   return (
-    <nav
-      className={styles.nav}
-      style={{ justifyContent: hasBackButton ? "flex-start" : "center" }}
-    >
-      {hasBackButton && <a href="/">&lt; Go back</a>}
+    <nav className={styles.nav}>
+      {hasBackButton && (
+        <a href="/" className={styles.backButton}>
+          &lt; Go back
+        </a>
+      )}
       <h1>{title}</h1>
+      <a href="/thread/new" className={styles.newRequest}>
+        New request
+      </a>
     </nav>
   );
 }

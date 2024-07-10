@@ -29,23 +29,8 @@ export async function fetchThreadTimelineEntries({
                     __typename
                     iso8601
                 }
-                createdBy {
-                    __typename
-                    ... on UserActor {
-                        user {
-                            fullName
-                        }
-                    }
-                    ... on CustomerActor {
-                        customer {
-                            fullName
-                        }
-                    }
-                    ... on MachineUserActor {
-                        machineUser {
-                            fullName
-                        }
-                    }
+                customer {
+                    fullName
                 }
                 updatedAt {
                     __typename
