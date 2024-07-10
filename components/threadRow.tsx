@@ -1,4 +1,4 @@
-import { plainClient } from "@/utils/plainClient";
+import { plainClient } from "@/lib/plainClient";
 import type { ThreadPartsFragment } from "@team-plain/typescript-sdk";
 import styles from "./threadRow.module.css";
 
