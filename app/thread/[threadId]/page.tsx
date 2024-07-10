@@ -18,6 +18,23 @@ function getFullname(actor) {
 	}
 }
 
+function getPriority(priority: 0 | 1 | 2 | 3) {
+	switch (priority) {
+		case 0: {
+			return "Urgent";
+		}
+		case 1: {
+			return "High";
+		}
+		case 2: {
+			return "Normal";
+		}
+		case 3: {
+			return "Low";
+		}
+	}
+}
+
 export default async function ThreadPage({
 	params,
 }: {
@@ -177,10 +194,35 @@ export default async function ThreadPage({
 				</div>
 
 				<div className={styles.threadInfo}>
-					<div className={styles.threadInfoProp}>Created by:</div>
-					<div>{getFullname(thread.createdBy)}</div>
-					<div className={styles.threadInfoProp}>Created at:</div>
-					<div>{thread.createdAt.iso8601}</div>
+					<div className={styles.title}>{thread.title}</div>
+					<div className={styles.description}>{thread.description}</div>
+
+					<div className={styles.threadInfoGrid}>
+						<div className={styles.threadInfoProp}>Opened by:</div>
+						<div className={styles.threadInfoDesc}>
+							{getFullname(thread.createdBy)}
+						</div>
+
+						<div className={styles.threadInfoProp}>Opened:</div>
+						<div className={styles.threadInfoDesc}>
+							{thread.createdAt.iso8601}
+						</div>
+
+						<div className={styles.threadInfoProp}>Last activity:</div>
+						<div className={styles.threadInfoDesc}>
+							{thread.updatedAt.iso8601}
+						</div>
+
+						<div className={styles.threadInfoProp}>Status:</div>
+						<div className={styles.threadInfoDesc}>
+							In {thread.status.toLowerCase()} queue
+						</div>
+
+						<div className={styles.threadInfoProp}>Priority:</div>
+						<div className={styles.threadInfoDesc}>
+							{getPriority(thread.priority)}
+						</div>
+					</div>
 				</div>
 			</main>
 		</>
