@@ -1,50 +1,10 @@
 import Navigation from "@/components/navigation";
 import styles from "./page.module.css";
-import Actor from "@/components/actor";
-import { ActorPartsFragment } from "@team-plain/typescript-sdk";
-import Avatar from "@/components/avatar";
+import { getActorFullName } from "@/utils/getActorFullName";
+import { getFormattedDate } from "@/utils/getFormattedDate";
+import { getPriority } from "@/utils/getPriority";
 
-function getFullname(actor) {
-	switch (actor.__typename) {
-		case "CustomerActor": {
-			return actor.customer.fullName;
-		}
-		case "UserActor": {
-			return actor.user.fullName;
-		}
-		case "MachineUserActor": {
-			return actor.user.fullName;
-		}
-	}
-}
-
-function getPriority(priority: 0 | 1 | 2 | 3) {
-	switch (priority) {
-		case 0: {
-			return "Urgent";
-		}
-		case 1: {
-			return "High";
-		}
-		case 2: {
-			return "Normal";
-		}
-		case 3: {
-			return "Low";
-		}
-	}
-}
-
-export default async function ThreadPage({
-	params,
-}: {
-	params: { threadId: string };
-}) {
-	const apiKey = process.env.PLAIN_API_KEY;
-	if (!apiKey) {
-		throw new Error("Please set the `PLAIN_API_KEY` environment variable");
-	}
-
+export default async function ThreadPage() {
 	const data = await fetch("https://core-api.uk.plain.com/graphql/v1", {
 		method: "POST",
 		body: JSON.stringify({
@@ -130,11 +90,11 @@ export default async function ThreadPage({
 			"Plain-Workspace-Id": "w_01J28VHKDK5PV3DJSZAA01XGAN",
 			Authorization: `Bearer ${process.env.PLAIN_API_KEY}`,
 		},
-	})
-		.then((res) => res.json())
+	}).then((res) => res.json());
 
 	const thread = data.data.thread;
 	const timelineEntries = thread.timelineEntries;
+
 	return (
 		<>
 			<Navigation hasBackButton title={thread.title} />
@@ -156,14 +116,14 @@ export default async function ThreadPage({
 							<div className={styles.message} key={entry.id}>
 								<div className={styles.entryHeader}>
 									<div className={styles.avatar}>
-										{getFullname(entry.actor)[0].toUpperCase()}
+										{getActorFullName(entry.actor)[0].toUpperCase()}
 									</div>
 									<div>
 										<div className={styles.actor}>
-											{getFullname(entry.actor)}
+											{getActorFullName(entry.actor)}
 										</div>
 										<div className={styles.timestamp}>
-											{entry.timestamp.iso8601}
+											{getFormattedDate(entry.timestamp.iso8601)}
 										</div>
 									</div>
 								</div>
@@ -197,17 +157,17 @@ export default async function ThreadPage({
 					<div className={styles.threadInfoGrid}>
 						<div className={styles.threadInfoProp}>Opened by:</div>
 						<div className={styles.threadInfoDesc}>
-							{getFullname(thread.createdBy)}
+							{getActorFullName(thread.createdBy)}
 						</div>
 
 						<div className={styles.threadInfoProp}>Opened:</div>
 						<div className={styles.threadInfoDesc}>
-							{thread.createdAt.iso8601}
+							{getFormattedDate(thread.createdAt.iso8601)}
 						</div>
 
 						<div className={styles.threadInfoProp}>Last activity:</div>
 						<div className={styles.threadInfoDesc}>
-							{thread.updatedAt.iso8601}
+							{getFormattedDate(thread.updatedAt.iso8601)}
 						</div>
 
 						<div className={styles.threadInfoProp}>Status:</div>
