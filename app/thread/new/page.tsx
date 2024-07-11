@@ -8,11 +8,13 @@ import { useState } from "react";
 import { RequestBody } from "@/app/api/contact-form/route";
 import { toast } from "react-hot-toast";
 import { Button } from "@/components/button";
+import { useRouter } from "next/navigation";
 
 export default function NewThreadPage() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -30,6 +32,7 @@ export default function NewThreadPage() {
       });
       if (result.ok) {
         toast.success("Nice, we'll be in touch shortly!");
+        router.push("/");
       } else {
         toast.error("Oops");
       }
