@@ -1,0 +1,55 @@
+.button {
+    padding: 8px 16px;
+    font-weight: 500;
+    background: #e9d5ff;
+    color: #581c87;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    display: block;
+    
+    line-height: 24px;
+    transition: background 50ms linear;
+    position: relative;
+}
+
+.button:not(:disabled) {
+    cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+    background: #d8b4fe;
+}
+
+.button:disabled {
+    background: #e4e4e7;
+    color: #27272a;
+}
+
+
+.spinner {
+    --size: 16px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--size);
+    height: var(--size);
+    border: 2px solid #27272a;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    70% {
+        transform: translate3d(-50%, -50%, 0) rotate(200deg);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+} 
