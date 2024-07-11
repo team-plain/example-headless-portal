@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { plainClient } from "@/lib/plainClient";
 import { ThreadRow } from "@/components/threadRow";
 import { PaginationControls } from "@/components/paginationControls";
+import { ThreadStatus } from "@team-plain/typescript-sdk";
 
 export const fetchCache = "force-no-store";
 
@@ -20,6 +21,7 @@ export default async function Home({
       // Note that if you provide multiple filters they are combined with AND rather than OR.
       //   customerIds: ["c_01J28ZQKJX9CVRXVHBMAXNSV5G"],
       tenantIdentifiers: [{ externalId: TENANT_EXTERNAL_ID }],
+      statuses: [ThreadStatus.Todo, ThreadStatus.Snoozed],
     },
     after: searchParams.after as string | undefined,
     before: searchParams.before as string | undefined,
