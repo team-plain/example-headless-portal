@@ -14,7 +14,12 @@ Now you will need to create an API key for the support portal backend to authent
 - Log in to Plain and go to `Settings -> Machine users`
 - Click `Add machine user` and fill in the details
 - You should be taken to your machine user, now click `Add API key`
-- TODO p-7884: create minimal set of perms and copy mechanism
+- Copy the permissions from below and click 'Paste permissions'
+- Fill in the description and save the key
+
+```
+attachment:download,company:read,customer:read,customerGroup:read,customerGroupMembership:read,customerTenantMembership:read,email:read,label:read,labelType:read,note:read,roles:read,serviceLevelAgreement:read,tenant:read,tenant:search,thread:read,tier:read,tierMembership:read,timeline:read,user:read,workspace:read,threadField:read,threadFieldSchema:read,customer:create,customer:edit,thread:create,thread:edit
+```
 
 Once you have your key you can get started:
 
