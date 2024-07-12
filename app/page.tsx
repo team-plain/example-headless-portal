@@ -26,6 +26,9 @@ export default async function Home({
     after: searchParams.after as string | undefined,
     before: searchParams.before as string | undefined,
   });
+  if (threads.error) {
+    console.error(threads.error)
+  }
 
   return (
     <>

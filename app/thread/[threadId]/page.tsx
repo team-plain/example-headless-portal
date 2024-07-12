@@ -12,14 +12,20 @@ export default async function ThreadPage({
 }) {
   const threadId = params.threadId;
 
-  const { data } = await fetchThreadTimelineEntries({
+  const { data, error } = await fetchThreadTimelineEntries({
     threadId,
     first: 100,
   });
 
+  if (error) {
+    console.error(error);
+    return null;
+  }
+
   if (!data) {
     return null;
   }
+  
 
   const thread = data.thread;
   const timelineEntries = thread.timelineEntries;
