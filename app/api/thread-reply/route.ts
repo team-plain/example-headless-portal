@@ -8,6 +8,7 @@ export async function POST(request: Request) {
   const replyRes = await plainClient.replyToThread({
     textContent: body.message,
     threadId: body.threadId,
+    // TODO: add the necessary impersonation inputs here
   });
   if (replyRes.error) {
     console.error(
