@@ -1,13 +1,16 @@
 .main {
   display: flex;
   justify-content: space-between;
-  min-height: 100vh;
+  flex-grow: 1;
   width: 100%;
 }
 
 .timeline {
   padding: 24px;
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .threadInfo {

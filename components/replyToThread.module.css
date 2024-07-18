@@ -1,0 +1,18 @@
+.root {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    gap: 8px;
+    width: 100%;
+}
+
+.button {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column-reverse
+}

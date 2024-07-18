@@ -4,6 +4,7 @@ import { getActorFullName } from "@/lib/getActorFullName";
 import { getFormattedDate } from "@/lib/getFormattedDate";
 import { getPriority } from "@/lib/getPriority";
 import { fetchThreadTimelineEntries } from "@/lib/fetchThreadTimelineEntries";
+import { ReplyToThread } from "@/components/replyToThread";
 
 export default async function ThreadPage({
   params,
@@ -85,6 +86,7 @@ export default async function ThreadPage({
               </div>
             );
           })}
+          <ReplyToThread />
         </div>
 
         <div className={styles.threadInfo}>
