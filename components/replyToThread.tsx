@@ -9,7 +9,6 @@ import styles from "./replyToThread.module.css";
 
 export function ReplyToThread() {
   const [message, setMessage] = useState("");
-  const router = useRouter();
   const params = useParams<{threadId: string}>();
 
   const sendReply = useCallback(async () => {
@@ -20,7 +19,6 @@ export function ReplyToThread() {
       });
       if (result.ok) {
         toast.success("Reply sent");
-        router.push("/");
       } else {
         toast.error("Oops");
       }
@@ -28,7 +26,7 @@ export function ReplyToThread() {
       console.error(error);
       toast.error("Oops");
     }
-  }, [message, params.threadId, router]);
+  }, [message, params.threadId]);
 
   return (
     <div className={styles.root}>
