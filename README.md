@@ -18,7 +18,7 @@ Now you will need to create an API key for the support portal backend to authent
 - Fill in the description and save the key
 
 ```
-attachment:download,company:read,customer:read,customerGroup:read,customerGroupMembership:read,customerTenantMembership:read,email:read,label:read,labelType:read,note:read,roles:read,serviceLevelAgreement:read,tenant:read,tenant:search,thread:read,tier:read,tierMembership:read,timeline:read,user:read,workspace:read,threadField:read,threadFieldSchema:read,customer:create,customer:edit,thread:create,thread:edit,thread:reply
+attachment:download,company:read,customer:read,customerGroup:read,customerGroupMembership:read,customerTenantMembership:create,customerTenantMembership:read,email:read,label:read,labelType:read,note:read,roles:read,serviceLevelAgreement:read,tenant:read,tenant:search,thread:read,tier:read,tierMembership:read,timeline:read,user:read,workspace:read,threadField:read,threadFieldSchema:read,customer:create,customer:edit,thread:create,thread:edit,thread:reply
 ```
 
 Once you have your key you can get started:
