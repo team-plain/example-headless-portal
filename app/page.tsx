@@ -8,7 +8,7 @@ import { ThreadStatus } from "@team-plain/typescript-sdk";
 export const fetchCache = "force-no-store";
 
 // When adapting this example get the tenant id as part of auth or fetch it afterwards
-export const TENANT_EXTERNAL_ID = "abcd1234";
+const tenantExternalId = "abcd1234";
 
 export default async function Home({
   searchParams,
@@ -20,7 +20,7 @@ export default async function Home({
       // If you want to only allow customers to view threads they have raised then you can filter by customerIds instead.
       // Note that if you provide multiple filters they are combined with AND rather than OR.
       //   customerIds: ["c_01J28ZQKJX9CVRXVHBMAXNSV5G"],
-      tenantIdentifiers: [{ externalId: TENANT_EXTERNAL_ID }],
+      tenantIdentifiers: [{ externalId: tenantExternalId }],
       statuses: [ThreadStatus.Todo, ThreadStatus.Snoozed],
     },
     after: searchParams.after as string | undefined,

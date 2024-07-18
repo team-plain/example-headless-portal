@@ -1,4 +1,3 @@
-import { TENANT_EXTERNAL_ID } from "@/app/page";
 import { plainClient } from "@/lib/plainClient";
 import { inspect } from "util";
 
@@ -10,6 +9,7 @@ export type RequestBody = {
 // When implementing this for real, take these values from user auth (e.g validate auth token and take values from claims)
 const name = "Bob Smith";
 const email = "bob.smith@example.com";
+const tenantExternalId = "abcd1234";
 
 export async function POST(request: Request) {
   // In production validation of the request body might be necessary.
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
         email: email,
         isVerified: true,
       },
-      tenantIdentifiers: [{ externalId: TENANT_EXTERNAL_ID }],
+      tenantIdentifiers: [{ externalId: tenantExternalId }],
     },
     onUpdate: {},
   });
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
       customerId: upsertCustomerRes.data.customer.id,
     },
     title: body.title,
-    tenantIdentifier: { externalId: TENANT_EXTERNAL_ID },
+    tenantIdentifier: { externalId: tenantExternalId },
     components: [
       {
         componentText: {
