@@ -11,7 +11,8 @@
 }
 
 .threadInfo {
-  min-width: 350px;
+  flex-basis: 400px;
+  flex-shrink: 0;
   padding: 24px;
   background: #fff;
   border-left: 1px solid #eee;
@@ -26,7 +27,7 @@
 
 .threadInfoProp {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .threadInfoDesc {
@@ -35,7 +36,6 @@
 
 .message {
   padding: 12px;
-  border-bottom: 1px solid #eee;
   width: 100%;
   margin-bottom: 16px;
 }
@@ -71,16 +71,5 @@
 
 .timestamp {
   font-size: 12px;
-  color: var(--text-muted);
-}
-
-.title {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.description {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 16px;
+  color: #666;
 }
