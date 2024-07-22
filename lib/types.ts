@@ -47,8 +47,20 @@ export type ChatEntry = {
 	text: string;
 };
 
+export type EmailParticipant = {
+	email: string;
+	name: string | null;
+};
+
 export type EmailEntry = {
 	__typename: "EmailEntry";
+	to: EmailParticipant;
+	from: EmailParticipant;
+	additionalRecipients: EmailParticipant[];
+	hiddenRecipients: EmailParticipant[];
+	subject: string | null;
+	textContent: string | null;
+	markdownContent: string | null;
 };
 
 export type SlackMessageEntry = {
