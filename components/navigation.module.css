@@ -1,15 +1,40 @@
 .nav {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
   padding: 16px;
   border-bottom: 1px solid #eee;
 }
 
-.backButton {
-  position: absolute;
-  left: 16px
+.nav h1 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.buttonContainerLeft,
+.buttonContainerRight {
+  flex-basis: 200px;
+  display: flex;
+}
+
+.buttonContainerRight {
+  justify-content: flex-end;
+}
+
+.buttonContainerLeft {
+  justify-content: flex-start;
+}
+
+.button {
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 500;
+}
+
+.button:hover {
+  border-color: #000;
 }
 
 .newRequest {

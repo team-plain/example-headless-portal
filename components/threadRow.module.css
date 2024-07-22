@@ -1,5 +1,23 @@
 .row {
-    display: flex;
-    gap: 16px;
     align-items: 'center';
+    border-radius: 8px;
+    padding: 16px 24px;
+}
+
+.row:hover {
+    background-color: #f8f8f8;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.customerRow {
+    color: #8d8d8d;
+    margin: 6px 0;
+}
+
+.previewText {
+    line-height: 1.4;
 }

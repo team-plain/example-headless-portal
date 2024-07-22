@@ -39,7 +39,7 @@ export type CustomEntry = {
 
 export type Customer = {
 	fullName: string;
-}
+};
 
 export type ChatEntry = {
 	__typename: "ChatEntry";

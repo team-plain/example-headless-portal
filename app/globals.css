@@ -1,23 +1,26 @@
-:root {
-  --font: helvetica, arial, sans-serif;
-  --text-muted: #666;
-}
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  
 }
 
 html,
 body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
   max-width: 100vw;
   overflow-x: hidden;
-  font: var(--font);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  font-size: 1rem;
+  font-family: inherit;
 }
 
