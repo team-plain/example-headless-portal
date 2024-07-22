@@ -10,7 +10,7 @@ export async function ThreadRow({ thread }: { thread: ThreadPartsFragment }) {
 
 	return (
 		<a className={styles.row} href={`/thread/${thread.id}`}>
-			<h3 className={styles.title}>{thread.title}</h3>
+			<h3 className={styles.title}>💬 {thread.title}</h3>
 			<div className={styles.customerRow}>
 				{getFormattedDate(thread.createdAt.iso8601)} from{" "}
 				{customer.data?.fullName}

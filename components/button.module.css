@@ -1,11 +1,11 @@
 .button {
     padding: 8px 16px;
     font-weight: 500;
-    background: #e9d5ff;
-    color: #581c87;
-    border-radius: 8px;
-    outline: none;
+    background: #000;
+    color: #fff;
     border: none;
+    border-radius: 6px;
+    outline: none;
     display: block;
     
     line-height: 24px;
@@ -18,12 +18,12 @@
 }
 
 .button:hover:not(:disabled) {
-    background: #d8b4fe;
+    background: #2d2d2d;
 }
 
 .button:disabled {
-    background: #e4e4e7;
-    color: #27272a;
+    background: #e2e2e2;
+    color: #9b9b9b;
 }
 
 

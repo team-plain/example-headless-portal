@@ -1,19 +1,18 @@
 .input {
-    box-shadow: 0 0 0 1px #cdccda66 inset;
-    color: #262F40;
+    color: #000;
     background: #FFF;
     border-radius: 8px;
-    padding: 6px 12px;
+    border: 2px solid #cccccc;
+    padding: 12px 12px;
     outline: none;
-    border: none;
     display: block;
     width: 100%;
-    font-size: 13px;
-    line-height: 24px;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 .input::placeholder {
-    color: #626B7F;
+    color: #999;
 }
 
 .input:hover {
@@ -21,5 +20,5 @@
 }
 
 .input:focus {
-    box-shadow: 0 0 0 2px #7e22ce;
+    border-color: #000;
 }

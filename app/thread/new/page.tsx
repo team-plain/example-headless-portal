@@ -1,14 +1,14 @@
 "use client";
-import Navigation from "@/components/navigation";
-import styles from "./page.module.css";
+import type { RequestBody } from "@/app/api/contact-form/route";
+import { Button } from "@/components/button";
 import { FormField } from "@/components/formField";
+import Navigation from "@/components/navigation";
 import { Textarea } from "@/components/textArea";
 import { TextInput } from "@/components/textInput";
-import { useState } from "react";
-import { RequestBody } from "@/app/api/contact-form/route";
-import { toast } from "react-hot-toast";
-import { Button } from "@/components/button";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import styles from "./page.module.css";
 
 export default function NewThreadPage() {
 	const [subject, setSubject] = useState("");

@@ -3,57 +3,32 @@
   justify-content: space-between;
   min-height: 100vh;
   width: 100%;
+  background: #f8f8f8;
+
 }
 
 .timeline {
   padding: 24px;
   flex-grow: 1;
-}
-
-.threadInfo {
-  flex-basis: 400px;
-  flex-shrink: 0;
-  padding: 24px;
-  background: #fff;
-  border-left: 1px solid #eee;
-}
-
-.threadInfoGrid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-auto-rows: max-content;
-  gap: 12px;
-}
-
-.threadInfoProp {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.threadInfoDesc {
-  font-size: 14px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .message {
-  padding: 12px;
+  padding: 20px;
   width: 100%;
   margin-bottom: 16px;
+  background: #fff;
+  border-radius: 8px;
 }
+
 
 .component {
   margin-bottom: 8px;
 }
 
-.avatar {
-  background: #000;
-  color: #fff;
-  border-radius: 100%;
-  padding: 8px;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.messageContent {
+  line-height: 1.4;
 }
 
 .entryHeader {
@@ -64,12 +39,29 @@
   margin-bottom: 12px;
 }
 
-.actor {
-  font-size: 14px;
-  font-weight: bold;
+
+.attribution {
+  font-size: 1rem;
+  color: #999;
+  margin-bottom: 8px;
 }
 
-.timestamp {
-  font-size: 12px;
-  color: #666;
+.actorName {
+  color: #000;
+  font-weight: 500;
+}
+
+.emailSubject {
+  margin:16px 0 4px;
+  font-weight: 500;
+}
+
+.emailMarkdown {
+  white-space: pre-wrap;
+}
+
+.emailParticipants {
+  font-size: 0.9rem;
+  color: #999;
+  margin-bottom: 12px;
 }

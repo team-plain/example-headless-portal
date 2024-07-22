@@ -1,27 +1,24 @@
 .textarea {
-    box-shadow: 0 0 0 1px #cdccda66 inset;
-    color: #262F40;
+    color: #000;
     background: #FFF;
     border-radius: 8px;
     padding: 8px 12px;
     outline: none;
-    border: none;
+    border: 2px solid #cccccc;
     display: block;
     width: 100%;
-    font-size: 13px;
-    line-height: 24px;
-    resize: none;
+    
+    resize: vertical;
     min-height: 100px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.4;
 }
 
 .textarea::placeholder {
-    color: #626B7F;
-}
-
-.textarea:hover {
-    box-shadow: 0 0 0 1px #aaaac73d inset;
+    color: #999;
 }
 
 .textarea:focus {
-    box-shadow: 0 0 0 2px #7e22ce;
+    border-color: #000;
 }
