@@ -24,7 +24,7 @@ attachment:download,company:read,customer:read,customerGroup:read,customerGroupM
 
 In a real implementation this headless portal would typically be built directly in your app and you would query for support threads for a customer's tenant. 
 
-In this fictional example the app is not behind any authentication and is showing the same support requests for all viewers. This means you have to set up all the demo data required for this example to run locally agains your workspace.
+In this fictional example the app is not behind any authentication and is showing the same support requests for all viewers. This means you have to set up all the demo data required for this example before you can run it.
 
 Specifically this means doing two things:
 
