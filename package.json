@@ -1,5 +1,5 @@
 {
-	"name": "plain-headless-portal",
+	"name": "@team-plain/example-headless-portal",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
