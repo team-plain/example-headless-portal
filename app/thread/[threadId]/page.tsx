@@ -5,6 +5,8 @@ import { getFormattedDate } from "@/lib/getFormattedDate";
 import { getPriority } from "@/lib/getPriority";
 import styles from "./page.module.css";
 
+export const fetchCache = "force-no-store"
+
 export default async function ThreadPage({
 	params,
 }: {
