@@ -4,13 +4,13 @@ This is a minimally styled example [Next.js](https://nextjs.org/) project demons
 
 To view the headless portal, go to: https://example-headless-portal.vercel.app/
 
-⚠️ This example may be hard to follow before reading the [high level overview in our docs](https://www.plain.com/docs/headless-support-portal).
+⚠️ This example may be hard to follow before reading the [high level overview in our docs](https://help.plain.com/article/headless-portal-overview).
 
 🆘 Headless portal implementations vary depending on your stack and requirements. If you are interested in some face-to-face advice on how to best make use of headless portals, reach out to us via the Plain app or on help@plain.com. 
 
 ## Set up 
 
-To run this example you need to have a workspace set up with [Plain](https://www.plain.com/) on at least the [Grow plan](https://www.plain.com/pricing).
+To run this example you need to have a workspace set up with [Plain](https://www.plain.com/) on at least the [Horizon plan](https://www.plain.com/pricing).
 
 ### Step 1: Create a workspace and get an API key
 
